@@ -1,0 +1,180 @@
+/* Dark Mode Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #1e1e2f;
+    color: #f0f0f0;
+}
+
+/* Container layout */
+.container {
+    display: flex;
+    gap: 20px;
+}
+
+/* General Container Styling */
+.list-container {
+    width: 250px;
+    background-color: #2a2a3b;
+    border: 1px solid #3e3e50;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden; /* Ensure no content overflows */
+}
+
+/* List Styling */
+.list {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
+    min-height: 200px;
+    border: 2px dashed #3e3e50;
+    border-radius: 8px;
+    max-height: 300px; /* Add a max height for scrollability */
+    overflow-y: auto;
+}
+
+/* List Item Styling */
+.list-item {
+    padding: 10px 15px;
+    margin: 8px;
+    background-color: #3a3a4e;
+    border: 1px solid #4a4a6a;
+    border-radius: 6px;
+    cursor: grab;
+    text-align: center;
+    color: #f0f0f0;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.2s;
+    position: relative;
+    padding-right: 35px; /* Space for delete button */
+    box-sizing: border-box;
+}
+
+.list-item:hover {
+    background-color: #4a4a6a;
+    transform: scale(1.02);
+}
+
+.list-item:active {
+    cursor: grabbing;
+}
+
+/* Purple background on drop */
+.list-item.dropped {
+    background-color: #6a0dad; /* Purple */
+    color: #fff;
+}
+
+/* Delete Button */
+.delete-btn {
+    display: none;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: #ff6b6b;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: #e63939;
+    box-shadow: 0px 4px 12px rgba(255, 107, 107, 0.5);
+    transform: scale(1.1);
+}
+
+.delete-btn:active {
+    transform: scale(0.9);
+}
+
+/* Input and Button Styling */
+.add-item {
+    margin-top: 10px;
+    display: flex;
+    gap: 8px;
+}
+
+input[type="text"] {
+    width: calc(100% - 50px); /* Adjust width to align with the button */
+    height: 40px; /* Same height as the button */
+    padding: 8px;
+    margin-right: 8px; /* Add space between input and button */
+    background-color: #2e2e3e;
+    border: 1px solid #4a4a6a;
+    border-radius: 6px;
+    color: #f0f0f0;
+    font-size: 14px;
+}
+
+input[type="text"]::placeholder {
+    color: #a9a9b9; /* Subtle gray for placeholder text */
+}
+
+button {
+    padding: 8px 12px;
+    border: none;
+    background-color: #4a90e2;
+    color: white;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #357abf;
+}
+
+/* Add Task Button */
+.add-task-btn {
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #6a5acd, #4a90e2); /* Subtle gradient for a modern look */
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s;
+    width: 170px;
+    height: 60px; /* Matches the height of the input field */
+    box-sizing: border-box; /* Ensures padding is included in the size */
+}
+
+.add-task-btn:hover {
+    box-shadow: 0px 4px 10px rgba(106, 90, 205, 0.5); /* Softer glow effect */
+    transform: translateY(-2px);
+}
+
+.add-task-btn:active {
+    transform: translateY(0);
+}
+
+/* Responsive Enhancements */
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .list-container {
+        width: 90%;
+    }
+}

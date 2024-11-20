@@ -100,4 +100,59 @@ function addTodo() {
   
   document.getElementById('done-list').addEventListener('dragover', allowDrop);
   document.getElementById('done-list').addEventListener('drop', drop);
+
   
+
+
+
+
+let touchStartX = 0;
+let touchEndX = 0;
+
+// Add swipe gesture detection to list items
+function enableSwipeActions(item) {
+  // Touch Start
+  item.addEventListener('touchstart', function (event) {
+    touchStartX = event.changedTouches[0].screenX;
+  });
+
+  // Touch End
+  item.addEventListener('touchend', function (event) {
+    touchEndX = event.changedTouches[0].screenX;
+    handleSwipe(item);
+  });
+}
+
+// Handle swipe action
+function handleSwipe(item) {
+  const todoList = document.getElementById('todo-list').querySelector('ul');
+  const doneList = document.getElementById('done-list').querySelector('ul');
+
+  if (touchStartX < touchEndX - 50) {
+    // Swipe Right: Move from To Do to Done
+    if (item.parentElement === todoList) {
+      doneList.appendChild(item);
+      item.classList.add('dropped'); // Add purple background
+      addDeleteButton(item);
+    }
+  } else if (touchStartX > touchEndX + 50) {
+    // Swipe Left: Delete from Done
+    if (item.parentElement === doneList) {
+      item.remove(); // Remove item
+    }
+  }
+}
+
+// Override createListItem to include swipe actions
+function createListItem(taskText) {
+  const listItem = document.createElement('li');
+  listItem.className = 'list-item';
+  listItem.textContent = taskText;
+
+  // Enable swipe actions
+  enableSwipeActions(listItem);
+
+  return listItem;
+}
+
+// No changes to addTodo, allowDrop, or other functions
